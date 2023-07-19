@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Start</title>
+</head>
+<body style="background-color: wheat">
+<div>
+        <header>
+        <nav class="nav_cont" style="display: flex; justify-content: space-around; align-items: center; font-size: 24px;">
+            <h1>Blog</h1>
+            <button style="display: inline-block;
+                            padding: 10px 15px;
+                            border-radius: 5px;
+                            user-select: none;
+                            line-height: 1.5;
+                            font-size: 12px;
+                            color: black;
+                            background-color: red;
+
+
+                            ">
+                <a href="{% url 'add_post'%}" style="text-decoration: none;
+                                                    color: black">ADD Post</a>
+            </button>
+
+
+        </nav>
+
+    </header>
+
+</div>
+
+
+
+    <div style="margin: auto;
+                margin-top: 100px;
+                width: 300px">
+
+    {% for blog in blogs %}
+        <div style="border: 3px solid black;
+                    margin-bottom: 10px;
+                    text-align: center;">
+            <p>{{blog.id}}</p>
+            <p>{{blog.author}}</p>
+            <p>{{blog.head}}</p>
+
+            <p>
+                <a href="{{blog.get_absolute_url}}" style="background-color: green;
+                           color: white;">
+                    Перейти
+                </a>
+            </p>
+        </div>
+
+    {%endfor%}
+
+    </div>
+
+
+
+
+
+</body>
+</html>
