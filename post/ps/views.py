@@ -1,4 +1,8 @@
+from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
+from django.contrib.auth.views import LoginView, LogoutView
 from django.shortcuts import render, redirect
+from django.urls import reverse_lazy
+
 from ps.forms import PostForm, PostModelForm
 from ps.models import Post
 
@@ -28,3 +32,25 @@ def add_post(request):
     return render(request, "add_post.html", context)
 
 
+def register_page(request):
+    form = UserCreationForm()
+    if request.method == 'POST':
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('start_page')
+        else:
+            render(request, 'register.html', {'form': form})
+    context = {'form': form}
+
+    return render(request, 'register.html', context)
+
+
+
+class LoginPageView(LoginView):
+    template_name = 'login.html'
+    form_class = AuthenticationForm
+    next_page = reverse_lazy('start_page')
+
+class LogoutPageView(LogoutView):
+    next_page = reverse_lazy('login')
