@@ -10,6 +10,8 @@
         <header>
         <nav class="nav_cont" style="display: flex; justify-content: space-around; align-items: center; font-size: 24px;">
             <h1>Blog</h1>
+
+            {% if user.is_authenticated %}
             <button style="display: inline-block;
                             padding: 10px 15px;
                             border-radius: 5px;
@@ -36,10 +38,12 @@
 
 
                             ">
-                <a href="{% url 'register' %}"
+                 <a href="{% url 'logout' %}"
                            style="text-decoration: none;
-                                                    color: black">Register</a>
+                                                    color: black">Logout</a>
+
             </button>
+            {% else %}
              <button style="display: inline-block;
                             padding: 10px 15px;
                             border-radius: 5px;
@@ -66,10 +70,11 @@
 
 
                             ">
-                <a href="{% url 'logout' %}"
+                <a href="{% url 'register' %}"
                            style="text-decoration: none;
-                                                    color: black">Logout</a>
+                                                    color: black">Register</a>
             </button>
+            {% endif %}
         </nav>
 
     </header>
