@@ -1,3 +1,4 @@
+from django.contrib.auth.models import AbstractUser
 from django.db import models
 
 class Post(models.Model):
@@ -13,3 +14,6 @@ class Post(models.Model):
     def get_absolute_url(self):
         return f"/{self.pk}"
 
+
+class User(AbstractUser):
+    image = models.ImageField(upload_to='users_images', null=True, blank=True)
